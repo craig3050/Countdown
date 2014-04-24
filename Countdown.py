@@ -42,10 +42,7 @@ def check_target(list):
 
         total = takes_two(total,second,op)
         count += 1
-        #final_list.append(op)
-        #final_list.append(second)
-        #final_list.append(" = ")
-        #final_list.append(float(total))
+
         final_list.extend((op, second, " = ", float(total)))
     return (total, final_list)
 
