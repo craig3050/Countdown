@@ -8,61 +8,41 @@
 # Copyright:   (c) Craig Cuninghame 2014
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
-
-def main():
-    from random import randint
-
-
-    print "********************************"
-    print "*** Welcome to the Countdown ***"
-    print "***   Number Puzzle Solver   ***"
-    print "********************************"
-
-    numbers_dictionary = {} # Empty
-
-    numbers_dictionary[1] = raw_input("Enter first number")
-    numbers_dictionary[2] = raw_input("Enter second number")
-    numbers_dictionary[3] = raw_input("Enter third number")
-    numbers_dictionary[4] = raw_input("Enter fourth number")
-    numbers_dictionary[5] = raw_input("Enter fifth number")
-    numbers_dictionary[6] = raw_input("Enter sixth number")
-    target = raw_input("Enter the Target Number")
-
-    while total != target:
-# Step 1 - How many numbers do we want to try
-        num_to_try = randint(1,6)
-        check_target(return_list(num_to_try))
-
+from random import randint
 
 # Step 2 - Call that many numbers out of our list
-def return_list(x):
-    list = [numbers_dictionary[randint(1,6)]]
-    x = 0
-    for num in x:
-        #Call num_to_try random numbers
-        while False:
-        #Call a random value from dictionary
+def return_list(num_to_try,numbers_dictionary):
+
+    first = randint(1,6)
+    list_fig = [int(numbers_dictionary[first])]
+    called = [first]
+    x = 1
+
+    print first
+    print called
+    print list_fig
+    print numbers_dictionary
+
+
+    while x < num_to_try:
             y = randint(1,6)
-        #Check if already been called
-        #if called retry a different number, if not add to list
-            if y in list:
-                return False
-            else:
-                list.append(numbers_dictionary[y])
-                return True
-    return list
+            if y not in called:
+                list_fig.append(int(numbers_dictionary[y]))
+                called.append(y)
+                x += 1
+    return list_fig
 
 # Step 3 - function to generate random Add/Subtract/Multiply/Divide
 def operator():
     x = randint(1,4)
     if x == 1:
-        return addition
+        return "addition"
     if x == 2:
-        return subtraction
+        return "subtraction"
     if x == 3:
-        return multiplication
+        return "multiplication"
     if x == 4:
-        return division
+        return "division"
 
 # Step 4 - Add / Subtract / divide / multiply and
 def takes_two(a,b,c):
@@ -88,22 +68,33 @@ def check_target(list):
         count += 1
         final_list.append(op)
         final_list.append(total)
-    if total == target:
-        print final_list
-        return total
-    else:
-        return total
+    return (total, final_list)
+
 
 
 # Step 5 - if matches print finished & last file entry, if not retry with different combination
+def main():
 
+    print "********************************"
+    print "*** Welcome to the Countdown ***"
+    print "***   Number Puzzle Solver   ***"
+    print "********************************"
 
+    numbers_dictionary = {} # Empty
 
+    numbers_dictionary[1] = raw_input("Enter first number")
+    numbers_dictionary[2] = raw_input("Enter second number")
+    numbers_dictionary[3] = raw_input("Enter third number")
+    numbers_dictionary[4] = raw_input("Enter fourth number")
+    numbers_dictionary[5] = raw_input("Enter fifth number")
+    numbers_dictionary[6] = raw_input("Enter sixth number")
+    target = raw_input("Enter the Target Number")
 
-
-
-
-
+    total = 0
+    while total != target:
+        num_to_try = randint(1,6)
+        total = check_target(return_list(num_to_try,numbers_dictionary))
+        print total
 
 if __name__ == '__main__':
     main()
