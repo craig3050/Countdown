@@ -77,6 +77,7 @@ def main():
 
     print final_list
     print(datetime.now()-startTime)
-
+    wait = raw_input("Press Enter to Continue: ")
+    
 if __name__ == '__main__':
     main()
