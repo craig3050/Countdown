@@ -1,0 +1,16 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda1 during installation
+UUID=48173d09-8efd-43b0-91c9-68ede2441f5f /               ext4    errors=remount-ro 0       1
+/swapfile                                 none            swap    sw              0       0
+
+UUID=a006855a-0924-4358-8427-4aa6b7bb764c /mnt/merge/Disk1 ext4  defaults 0 0
+UUID=67e01af5-e100-45e3-9583-5496e954747b /mnt/merge/Disk2 ext4  defaults 0 0
+UUID=606B2A58351E625E /mnt/Disk1 ntfs  defaults 0 0
+
+/mnt/merge/* /media/MainDisk fuse.mergerfs defaults,allow_other,direct_io,use_ino,category.create=eplfs,moveonenospc=true,minfreespace=20G,fsname=mergerfsPool 0 0
